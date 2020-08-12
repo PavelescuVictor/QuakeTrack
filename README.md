@@ -1,3 +1,5 @@
+Vuy application used for plotting earthquake data gathered from earthquakes.usgs.gov api onto a interactive map created using Vue-Map-Box.
+
 # quaketrack
 
 ## Project setup
