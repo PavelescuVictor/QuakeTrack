@@ -15,7 +15,9 @@
             <h1>{{ msg }}</h1>
             <div class="form__wrapper">
                 <form @submit.prevent="generateQuakesData">
-                    <p v-text="formError"></p>
+                    <div class="form__error" v-bind:class="{notDisplayed: formErrorNull}">
+                        <p v-text="formError" ></p>
+                    </div>
                     <div class="days">
                         <label>Enter number of days</label>
                         <input type="number" id="days" name="days" v-model="days" max="30"/>
@@ -73,6 +75,8 @@ export default {
             minDepth: '',
             minMagnitude: '',
             formError: '',
+            formErrorNull: true,
+            formErrorTime: 2500,
             geoJsonSource: {
                 type: 'geojson',
                 data: {
@@ -94,11 +98,11 @@ export default {
                         ]
                     },
                 }
-            }
+            },
         }
     },
     methods: {
-        generateQuakesData(){
+        generateQuakesData() {
             this.formError = '';
             let daysSetFlag = true;
             let maxDepthSetFlag = true;
@@ -128,6 +132,9 @@ export default {
                });
             }
         },
+        removeFormErrorText() {
+            this.formError = "";
+        }
     },
     created(){
         this.mapbox = Mapbox;
@@ -135,6 +142,13 @@ export default {
    watch: {
        geoJsonSource: function (val){
            console.log(val);
+       },
+       formError: function (val){
+           if(val === "") this.formErrorNull = true;
+           else {
+               setTimeout(this.removeFormErrorText, this.formErrorTime);
+               this.formErrorNull = false;
+           }
        }
    }
 }
@@ -161,7 +175,7 @@ export default {
         flex-direction: column;
     }
 
-    .form__wrapper p{
+    .form__error p{
         height: var(--padding-1);
         transform: translateX(-50%);
         position: absolute;
@@ -216,10 +230,16 @@ export default {
         transition: padding .2s ease-in, background .2s ease-in, color .2s ease-in, border-radius .2s ease-in;
     }
 
-    .submit input:hover{
+    .submit input:hover {
         background: var(--color-darkblue);
         color: var(--color-lightgrey);
         padding: calc(var(--padding-2) / 2) var(--padding-2);
         border-radius: var(--border-radius-2);
+    }
+
+    /* UTILITY CLASSES */
+
+    .notDisplayed {
+        display: none;
     }
 </style>

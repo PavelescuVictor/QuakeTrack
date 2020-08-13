@@ -4,17 +4,17 @@
             <div class="nav__ul-wrapper">
                 <ul class="nav__ul-content">
                     <li>
-                        <a href="#">
+                        <a href="#" id="main" @click="changeDisplayedPage">
                             <i class="fas fa-home"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" id="map" @click="changeDisplayedPage">
                             <i class="fas fa-map"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" id="globe" @click="changeDisplayedPage">
                             <i class="fas fa-globe-americas"></i>
                         </a>
                     </li>
@@ -26,6 +26,12 @@
 <script>
     export default {
         name: "Navbar",
+        methods: {
+            changeDisplayedPage(event) {
+                let id = event.currentTarget.id;
+                this.$emit('updatePage', id);
+            },
+        },
     }
 </script>
 <style scoped>

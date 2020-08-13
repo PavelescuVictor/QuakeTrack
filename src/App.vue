@@ -2,14 +2,17 @@
     <div id="app">
         <div id="app__content">
             <div class="navbar__wrapper">
-                <Navbar />
+                <Navbar @updatePage="changeDisplayedPage"/>
             </div>
             <div class="content__wrapper">
-                <div class="map">
+                <div class="main" v-bind:class="{notDisplayedPage : !isMainActive}">
+                    <h1>This is the main page!</h1>
+                </div>
+                <div class="map" v-bind:class="{notDisplayedPage : !isMapActive}">
                     <Map/>
                 </div>
-                <div class="globe">
-                    <Map/>
+                <div class="globe" v-bind:class="{notDisplayedPage : !isGlobeActive}">
+                    <h1>This is where the globe will go.</h1>
                 </div>
             </div>
         </div>
@@ -27,8 +30,36 @@
         },
         data() {
             return {
+                showedPage: 'main',
+                isMainActive: true,
+                isMapActive: false,
+                isGlobeActive: false,
             };
         },
+        methods: {
+            changeDisplayedPage(e) {
+                this.showedPage = e;
+            },
+        },
+        watch: {
+            showedPage: function(val) {
+                if(val === "main") {
+                    this.isMainActive = true;
+                    this.isMapActive = false;
+                    this.isGlobeActive = false;
+                }
+                else if(val === "map") {
+                    this.isMainActive = false;
+                    this.isMapActive = true;
+                    this.isGlobeActive = false;
+                }
+                else if(val === "globe") {
+                    this.isMainActive = false;
+                    this.isMapActive = false;
+                    this.isGlobeActive = true;
+                }
+            }
+        }
     };
 </script>
 
@@ -148,7 +179,24 @@
         background: var(--color-lightgrey-3);
     }
 
+    /* Main */
+
+    .main{
+        height: 100%;
+        background: var(--color-lightgrey-3);
+    }
+
+    /* Globe */
+
     .globe{
+        height: 100%;
+        background: var(--color-lightgrey-3);
+    }
+
+    /* UTILITY CLASSES */
+
+    .notDisplayedPage{
         display: none;
     }
+
 </style>
