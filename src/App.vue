@@ -6,13 +6,13 @@
             </div>
             <div class="content__wrapper">
                 <div class="main" v-bind:class="{notDisplayedPage : !isMainActive}">
-                    <h1>This is the main page!</h1>
+                    <Main />
                 </div>
                 <div class="map" v-bind:class="{notDisplayedPage : !isMapActive}">
-                    <Map/>
+                    <Map :isMapActive="isMapActive"/>
                 </div>
                 <div class="globe" v-bind:class="{notDisplayedPage : !isGlobeActive}">
-                    <h1>This is where the globe will go.</h1>
+                    <Globe :isGlobeActive="isGlobeActive"/>
                 </div>
             </div>
         </div>
@@ -22,11 +22,15 @@
 <script>
     import Map from "./components/Map.vue";
     import Navbar from "./components/Navbar.vue";
+    import Globe from "./components/Globe.vue";
+    import Main from "./components/Main.vue";
     export default {
         name: "App",
         components: {
             Map,
             Navbar,
+            Globe,
+            Main,
         },
         data() {
             return {
@@ -107,6 +111,7 @@
         /* MARGINS */
 
         --margin-1: 60px;    
+        --margin-2: 30px;
 
         /* PADDINGS */
 

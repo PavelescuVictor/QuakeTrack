@@ -1,16 +1,18 @@
 <template>
     <div id="map">
-        <MglMap :accessToken="accessToken" :mapStyle="mapStyle" :center="coordinates" :zoom="zoom" :attributionControl="false">
-            <MglNavigationControl position="top-left" />
-            <MglGeolocateControl position="top-left" />
-            <MglFullscreenControl position="top-left" />
-            <MglGeojsonLayer
-                :sourceId="geoJsonSource.data.id"
-                :source="geoJsonSource"
-                layerId="mylayer"
-                :layer="geoJsonLayer"
-            />
-        </MglMap>
+        <div class="map__wrapper">
+            <MglMap :accessToken="accessToken" :mapStyle="mapStyle" :center="coordinates" :zoom="zoom" :attributionControl="false">
+                <MglNavigationControl position="top-left" />
+                <MglGeolocateControl position="top-left" />
+                <MglFullscreenControl position="top-left" />
+                <MglGeojsonLayer
+                    :sourceId="geoJsonSource.data.id"
+                    :source="geoJsonSource"
+                    layerId="mylayer"
+                    :layer="geoJsonLayer"
+                />
+            </MglMap>
+        </div>
         <div class="map__content">
             <h1>{{ msg }}</h1>
             <div class="form__wrapper">
@@ -66,6 +68,7 @@ export default {
     data () {
         return {
             msg: "Earthquakes Map Visualization",
+            mapbox: null,
             accessToken: 'pk.eyJ1IjoiMjA0M253IiwiYSI6ImNrZG9qeWhtMDBoMGYycXFvNm9nZnh4YzMifQ.djEvGtmsohtkGeFhV-0OFg',
             mapStyle: 'mapbox://styles/mapbox/streets-v11',
             coordinates: [0, 0],
@@ -124,16 +127,17 @@ export default {
                 queryDate.setDate(currentdate.getDate() - this.days);
                 var dateTime = `${currentdate.getFullYear()}-${(currentdate.getMonth()+1)}-${currentdate.getDate()}T${currentdate.getHours()}:${currentdate.getMinutes()}:${currentdate.getSeconds()}`
                 var queryDateTime = `${queryDate.getFullYear()}-${(queryDate.getMonth()+1)}-${queryDate.getDate()}T${queryDate.getHours()}:${queryDate.getMinutes()}:${queryDate.getSeconds()}`
-                console.log(dateTime);
-                console.log(queryDateTime);
                 axios.get(`https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${queryDateTime}&endtime=${dateTime}&minmagnitude=${this.minMagnitude}&maxdepth=${this.maxDepth}&mindepth=${this.minDepth}`).then(response => {
-                this.geoJsonSource = response;
-                this.geoJsonSource.data['id'] = "thisIsMySource";
-               });
+                    this.geoJsonSource = response;
+                    this.geoJsonSource.data['id'] = "thisIsMySource";
+                });
             }
         },
         removeFormErrorText() {
             this.formError = "";
+        },
+        mapLoaded(e) {
+            this.mapbox = e.Mapbox;
         }
     },
     created(){
@@ -158,6 +162,10 @@ export default {
         height: 100%;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .map__wrapper{
+        height: 100%;
     }
 
     .map__content{
