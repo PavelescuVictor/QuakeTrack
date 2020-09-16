@@ -20,7 +20,7 @@ Allowing for a maximum of 30 days of data.
 
 ## Stack: 
 
-HTML, CSS, Javascript, Vue.js, Fontawesome, Google Fonts Api
+HTML, CSS, Javascript, Vue.js, Font Awesome, Google Fonts Api
 
 ## Upcomming improvements: 
 
