@@ -10,7 +10,7 @@ Vue application used for plotting earthquake data gathered from earthquakes.usgs
 
 earthquakes.usgs.gov API
 
-Allowing for a maximum of 30 day data.
+Allowing for a maximum of 30 days of data.
 
 ## Map and Globe Components:
 
