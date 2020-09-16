@@ -34,7 +34,7 @@ Allowing for a maximum of 30 day data.
 
 ## Map and Globe Preview:
 
-	![Map](./Readme%20Assets/Map.jpg)
-  ![Globe](./Readme%20Assets/Globe.jpg)
+![Map](https://github.com/PavelescuVictor/QuakeTrack/blob/master/Readme%20Assets/Map.png)
+![Globe](https://github.com/PavelescuVictor/QuakeTrack/blob/master/Readme%20Assets/Globe.png)
 
 
