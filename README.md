@@ -18,7 +18,9 @@ Allowing for a maximum of 30 days of data.
 - MapBox.gl, 
 - Globe.gl
 
-## Stack: HTML, CSS, Javascript, Vue.js, Fontawesome, Google Fonts Api
+## Stack: 
+
+HTML, CSS, Javascript, Vue.js, Fontawesome, Google Fonts Api
 
 ## Upcomming improvements: 
 
