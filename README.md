@@ -34,7 +34,7 @@ Allowing for a maximum of 30 day data.
 
 ## Map and Globe Preview:
 
-	![Map](./Readme\ Assets/Map.jpg)
-  ![Globe](./Readme\ Assets/Globe.jpg)
+	![Map](./Readme%20Assets/Map.jpg)
+  ![Globe](./Readme%20Assets/Globe.jpg)
 
 
