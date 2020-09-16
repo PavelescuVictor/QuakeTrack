@@ -29,6 +29,7 @@ HTML, CSS, Javascript, Vue.js, Font Awesome, Google Fonts Api
 - Adding about page,
 - Scroll Top Button for the graph page,
 - Multiple layers for the map and globe,
+- Creating Vue component for showing that on the globe,
 
 ## Unresolved bugs:
 
